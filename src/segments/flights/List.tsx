@@ -1,3 +1,5 @@
+import { RefObject } from 'react'
+
 interface Flight {
   id: string
   stops: string[]
@@ -12,21 +14,24 @@ function List({
   flights,
   from,
   to,
-  onScroll,
+  scrollRef,
 }: {
   flights: Flight[]
   from: string
   to: string
-  onScroll: () => void
+  scrollRef: RefObject<HTMLDivElement>
 }) {
   return (
     <div
-      className="py-10 px-5 bg-gray-50 self-stretch overflow-y-scroll no-scrollbar"
-      onScroll={onScroll}
+      className="py-10 px-5 bg-gray-50 self-stretch overflow-y-scroll no-scrollbar -mt-32"
+      ref={scrollRef}
     >
       <ul className="flex flex-col gap-4">
-        {flights.map((flight) => (
-          <li key={flight.id} className="bg-white rounded-lg relative  px-4 py-5">
+        {flights.map((flight, index) => (
+          <li
+            key={flight.id}
+            className={`bg-white rounded-lg relative  px-4 py-5 ${index === 0 ? 'mt-32' : ''}`}
+          >
             {flight.seatsLeft < 10 && (
               <>
                 <div className="bg-red-700 h-1/2 w-1 absolute left-0 top-1/4 rounded-r-lg" />

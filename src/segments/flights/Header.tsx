@@ -1,17 +1,32 @@
-function Header({ scrollStarted }: { scrollStarted: boolean }) {
+import { motion, useTransform, MotionValue } from 'framer-motion'
+
+function Header({
+  scrollYProgress,
+  scrollY,
+}: {
+  scrollYProgress: MotionValue<number>
+  scrollY: MotionValue<number>
+}) {
+  const y = useTransform(scrollY, (latest) => (latest < 100 ? -latest : -100))
+  const opacity = useTransform(scrollY, (latest) => (latest < 50 ? 1 - latest / 50 : 0))
   return (
-    <div className="bg-blue-700 text-white">
-      <div className="flex justify-center items-center relative pt-10 px-10">
+    <motion.div className="bg-blue-700 text-white z-10" style={{ y }}>
+      <motion.div
+        className="flex justify-center items-center relative pt-10 px-10"
+        style={{ opacity }}
+      >
         <button className="absolute left-10 cursor-pointer">
           <svg style={{ width: '24px', height: '24px' }} viewBox="0 0 24 24">
             <path fill="white" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
           </svg>
         </button>
         <div className="text-3xl font-bold italic opacity-60">SAS</div>
-      </div>
+      </motion.div>
       <div className="flex items-end py-5 px-10">
         <div className="basis-5/12 flex flex-col items-start">
-          <div className="text-sm opacity-60 mb-1">San Francisco</div>
+          <motion.div className="text-sm opacity-60 mb-1" style={{ opacity }}>
+            San Francisco
+          </motion.div>
           <div className="text-3xl">SFO</div>
         </div>
         <div className="basis-2/12 flex justify-center h-9 items-center">
@@ -23,7 +38,9 @@ function Header({ scrollStarted }: { scrollStarted: boolean }) {
           </svg>
         </div>
         <div className="basis-5/12 flex flex-col items-end">
-          <div className="text-sm opacity-60 mb-1">New York</div>
+          <motion.div className="text-sm opacity-60 mb-1" style={{ opacity }}>
+            New York
+          </motion.div>
           <div className="text-3xl">JFK</div>
         </div>
       </div>
@@ -42,7 +59,7 @@ function Header({ scrollStarted }: { scrollStarted: boolean }) {
           <div className="opacity-20">11</div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
