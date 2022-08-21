@@ -5,7 +5,7 @@ function Header({ isMini }: { isMini: boolean }) {
   const moveLeftCityCode = isMini ? '-translate-x-4' : ''
   const moveRightCityCode = isMini ? 'translate-x-4' : ''
   const datesPosition = isMini ? 'translate-y-6' : ''
-  const appearDatesFrame = isMini ? 'opacity-100 scale-100' : 'opacity-0 scale-60'
+  const scaleDatesFrame = isMini ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
   const moveLeftDate = isMini ? 'translate-x-2' : ''
   const moveLeft2Date = isMini ? 'translate-x-4' : ''
   const moveRightDate = isMini ? '-translate-x-2' : ''
@@ -58,7 +58,7 @@ function Header({ isMini }: { isMini: boolean }) {
       <div className={`flex relative transition-all duration-700 ${datesPosition}`}>
         <div className="absolute b-0 w-full h-full flex justify-center">
           <div
-            className={`w-11/12 h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-md transition-all duration-500 ${appearDatesFrame}`}
+            className={`w-11/12 h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-md transition-all duration-500 ${scaleDatesFrame}`}
           />
         </div>
         <div className="basis-1/3 flex justify-around pt-5">
