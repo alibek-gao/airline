@@ -1,3 +1,5 @@
+import { CSSProperties } from 'react'
+
 interface Flight {
   id: string
   stops: string[]
@@ -13,11 +15,15 @@ interface Props {
   from: string
   to: string
   zIndex: number
+  index: number
 }
 
-function Item({ flight, from, to, zIndex }: Props) {
+function Item({ flight, from, to, zIndex, index }: Props) {
   return (
-    <div className="bg-white rounded-lg relative px-4 py-5 drop-shadow-md" style={{ zIndex }}>
+    <div
+      className="bg-white rounded-lg relative px-4 py-5 drop-shadow-md flight-item"
+      style={{ zIndex, '--shown': index < 4 ? '1' : '' } as CSSProperties}
+    >
       {flight.seatsLeft < 10 && (
         <>
           <div className="bg-red-700 h-1/2 w-1 absolute left-0 top-1/4 rounded-r-lg" />

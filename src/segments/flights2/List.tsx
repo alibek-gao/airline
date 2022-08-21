@@ -1,4 +1,5 @@
 import Item from '@/segments/flights2/Item'
+import { useEffect, useRef } from 'react'
 
 interface Flight {
   id: string
@@ -23,6 +24,7 @@ function List({ flights, from, to }: { flights: Flight[]; from: string; to: stri
               to={to}
               key={flight.id}
               zIndex={flights.length - index}
+              index={index}
             />
           ))}
         </div>

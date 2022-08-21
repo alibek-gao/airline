@@ -7,3 +7,8 @@
     width: 0; /* Remove scrollbar space */
     background: transparent; /* Optional: just make scrollbar invisible */
 }
+
+.flight-item {
+    transition: all 0.5s cubic-bezier(.5, 1, .75, 1.25);
+    transform: perspective(400px) rotateX(calc(30deg - (var(--shown, 0) * 30deg))) translateY(calc(-50px + (var(--shown, 0) * 50px)));
+}
