@@ -1,22 +1,38 @@
 function Header({ isMini }: { isMini: boolean }) {
-  const headerPosition = isMini ? '-translate-y-24' : ''
-  const opacity = isMini ? 'opacity-0' : ''
-  const scaleCityCode = isMini ? 'scale-75' : ''
-  const moveLeftCityCode = isMini ? '-translate-x-4' : ''
-  const moveRightCityCode = isMini ? 'translate-x-4' : ''
-  const datesPosition = isMini ? 'translate-y-6' : ''
-  const scaleDatesFrame = isMini ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
-  const moveLeftDate = isMini ? 'translate-x-2' : ''
-  const moveLeft2Date = isMini ? 'translate-x-4' : ''
-  const moveRightDate = isMini ? '-translate-x-2' : ''
-  const moveRight2Date = isMini ? '-translate-x-4' : ''
+  const animations = isMini
+    ? {
+        headerPosition: '-translate-y-24',
+        opacity: 'opacity-0',
+        scaleCityCode: 'scale-75',
+        moveLeftCityCode: '-translate-x-4',
+        moveRightCityCode: 'translate-x-4',
+        datesPosition: 'translate-y-6',
+        scaleDatesFrame: 'opacity-100 scale-100',
+        moveLeftDate: 'translate-x-2',
+        moveLeft2Date: 'translate-x-4',
+        moveRightDate: '-translate-x-2',
+        moveRight2Date: '-translate-x-4',
+      }
+    : {
+        headerPosition: '',
+        opacity: '',
+        scaleCityCode: '',
+        moveLeftCityCode: '',
+        moveRightCityCode: '',
+        datesPosition: '',
+        scaleDatesFrame: 'opacity-0 scale-50',
+        moveLeftDate: '',
+        moveLeft2Date: '',
+        moveRightDate: '',
+        moveRight2Date: '',
+      }
 
   return (
     <div
-      className={`fixed w-full max-w-md bg-blue-700 text-white z-50 transition-all duration-700 ${headerPosition}`}
+      className={`fixed w-full max-w-md bg-blue-700 text-white z-50 transition-all duration-700 ${animations.headerPosition}`}
     >
       <div
-        className={`flex justify-center items-center relative pt-10 px-10 transition-all duration-300 ${opacity}`}
+        className={`flex justify-center items-center relative pt-10 px-10 transition-all duration-300 ${animations.opacity}`}
       >
         <button className="absolute left-10 cursor-pointer">
           <svg style={{ width: '24px', height: '24px' }} viewBox="0 0 24 24">
@@ -27,11 +43,13 @@ function Header({ isMini }: { isMini: boolean }) {
       </div>
       <div className="flex items-end pt-5 px-10">
         <div className="basis-5/12 flex flex-col items-start">
-          <div className={`text-sm opacity-60 mb-1 transition-all duration-300 ${opacity}`}>
+          <div
+            className={`text-sm opacity-60 mb-1 transition-all duration-300 ${animations.opacity}`}
+          >
             San Francisco
           </div>
           <div
-            className={`text-3xl transition-all duration-500 ${scaleCityCode} ${moveLeftCityCode}`}
+            className={`text-3xl transition-all duration-500 ${animations.scaleCityCode} ${animations.moveLeftCityCode}`}
           >
             SFO
           </div>
@@ -45,25 +63,31 @@ function Header({ isMini }: { isMini: boolean }) {
           </svg>
         </div>
         <div className="basis-5/12 flex flex-col items-end">
-          <div className={`text-sm opacity-60 mb-1 transition-all duration-300 ${opacity}`}>
+          <div
+            className={`text-sm opacity-60 mb-1 transition-all duration-300 ${animations.opacity}`}
+          >
             New York
           </div>
           <div
-            className={`text-3xl transition-all duration-500 ${scaleCityCode} ${moveRightCityCode}`}
+            className={`text-3xl transition-all duration-500 ${animations.scaleCityCode} ${animations.moveRightCityCode}`}
           >
             JFK
           </div>
         </div>
       </div>
-      <div className={`flex relative transition-all duration-700 ${datesPosition}`}>
+      <div className={`flex relative transition-all duration-700 ${animations.datesPosition}`}>
         <div className="absolute b-0 w-full h-full flex justify-center">
           <div
-            className={`w-11/12 h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-md transition-all duration-500 ${scaleDatesFrame}`}
+            className={`w-11/12 h-full rounded-lg bg-white bg-opacity-10 backdrop-blur-md transition-all duration-500 ${animations.scaleDatesFrame}`}
           />
         </div>
         <div className="basis-1/3 flex justify-around pt-5">
-          <div className={`opacity-20 transition-all duration-500 ${moveLeft2Date}`}>5</div>
-          <div className={`opacity-40 transition-all duration-500 ${moveLeftDate}`}>6</div>
+          <div className={`opacity-20 transition-all duration-500 ${animations.moveLeft2Date}`}>
+            5
+          </div>
+          <div className={`opacity-40 transition-all duration-500 ${animations.moveLeftDate}`}>
+            6
+          </div>
           <div className="opacity-60">7</div>
         </div>
         <div className="basis-1/3 flex justify-center pt-5 z-20">
@@ -71,8 +95,12 @@ function Header({ isMini }: { isMini: boolean }) {
         </div>
         <div className="basis-1/3 flex justify-around pt-5">
           <div className="opacity-60">9</div>
-          <div className={`opacity-40 transition-all duration-500 ${moveRightDate}`}>10</div>
-          <div className={`opacity-20 transition-all duration-500 ${moveRight2Date}`}>11</div>
+          <div className={`opacity-40 transition-all duration-500 ${animations.moveRightDate}`}>
+            10
+          </div>
+          <div className={`opacity-20 transition-all duration-500 ${animations.moveRight2Date}`}>
+            11
+          </div>
         </div>
       </div>
     </div>
